@@ -1,22 +1,16 @@
 variable "name" {
-  description = "RDS Subnet Group 的名称"
+  description = "RDS 参数组的名称"
   type        = string
 }
 
 variable "description" {
-  description = "RDS Subnet Group 的描述"
+  description = "RDS 参数组的描述"
   type        = string
 }
 
-variable "subnet_ids" {
-  description = "用于 RDS 子网组的子网 ID 列表"
-  type        = list(string)
-}
-
-variable "availability_zones" {
-  description = "手动输入的可用区列表，用于确认子网分布在哪些 AZ"
-  type        = list(string)
-  default     = null
+variable "family" {
+  description = "数据库参数组家族，例如 db2-se-11.5"
+  type        = string
 }
 
 variable "region" {

@@ -1,5 +1,4 @@
-name                 = "my-rds-subnet-group"
-description          = "Subnet group for production RDS instances"
-subnet_ids           = ["subnet-0326a7076118fc604", "subnet-0ce3cf74d38feeaf9", "subnet-0004f0eb610f26817"]
-# availability_zones   = ["us-west-2a", "us-west-2b"]
-region               = "us-east-1"
+name        = "my-db2-param-group"
+description = "Parameter group for IBM Db2 RDS instances"
+family      = "db2-se-11.5"
+region      = "us-east-1"
