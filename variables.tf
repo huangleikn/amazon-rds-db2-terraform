@@ -14,7 +14,6 @@ variable "family" {
 }
 
 variable "region" {
-  description = "AWS 区域，例如 us-west-2"
+  description = "AWS 区域，例如 us-east-1"
   type        = string
-  default     = "us-west-2"
 }
