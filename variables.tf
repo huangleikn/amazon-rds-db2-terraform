@@ -1,169 +1,95 @@
-variable "identifier" {
-  description = "The unique name of RDS DB2 Instance"
-  type        = string
-}
-
 variable "aws_region" {
-  description = "The AWS region to deploy to"
+  description = "The AWS region to create the resources in."
   type        = string
+  default     = "us-east-1"
 }
 
-variable "instance_class" {
-  description = "The instance type of the RDS instance"
+variable "db_instance_identifier" {
+  description = "The name of the database instance."
   type        = string
+  default     = "rds-dev"
 }
 
-variable "db_name" {
-  description = "Database Name"
+variable "master_username" {
+  description = "The master username for the database."
   type        = string
+  default     = "masteruser"
 }
 
-variable "time_zone" {
-  description = "Timezone for the database"
+variable "master_password" {
+  description = "The master password for the database."
   type        = string
+  sensitive   = true
 }
 
-variable "storage_type" {
-  description = "One of 'standard' (magnetic), 'gp2' (general purpose SSD), or 'io1' (provisioned IOPS SSD)"
+variable "db_instance_class" {
+  description = "The compute and memory capacity of the database instance."
   type        = string
+  default     = "db.m6g.large"
 }
 
 variable "allocated_storage" {
-  description = "The allocated storage (in gigabytes)"
+  description = "The amount of storage (in GB) to allocate for the database instance."
   type        = number
+  default     = 200
 }
 
-variable "max_allocated_storage" {
-  description = "The maximum size DB can grow (in gigabytes)"
-  type        = number
+variable "storage_type" {
+  description = "The storage type for the database instance."
+  type        = string
+  default     = "gp2"
 }
 
-variable "iops" {
-  description = "Storage IOPS to be allocated"
-  type        = number
+variable "engine_version" {
+  description = "The version of the database engine."
+  type        = string
+  default     = "11.5.9.0-64000591/r1"
 }
 
-variable "db_username" {
-  description = "Username for the master DB user"
+variable "db_subnet_group_name" {
+  description = "The name of the DB subnet group."
   type        = string
 }
 
-variable "subnet_ids" {
-  description = "A list of VPC subnet IDs"
+variable "vpc_security_group_ids" {
+  description = "A list of VPC security group IDs to associate with the DB instance."
   type        = list(string)
 }
 
-variable "vpc_id" {
-  description = "The ID of the VPC where the DB will be created"
+variable "db_parameter_group_name" {
+  description = "The name of the DB parameter group."
   type        = string
 }
 
-variable "vpc_cidr" {
-  description = "The CIDR block of the VPC"
-  type        = string
-}
-
-variable "multi_az" {
-  description = "Specifies if the RDS instance is multi-AZ"
-  type        = bool
-}
-
-variable "db_engine" {
-  description = "Specifies the DB engine e.g. db2-ae, db2-se"
-  type        = string
-}
-
-variable "db_engine_version" {
-  description = "Specifies the version of the db engine"
-  type        = string
-}
-
-variable "major_engine_version" {
-  description = "Specifies the version of the db engine"
-  type        = string
-}
-
-variable "family" {
-  description = "Specifies the family; used to select db parameter group"
-  type        = string
-}
-
-variable "license_model" {
-  description = "Specifies the licencing model"
-  type        = string
-  validation {
-    condition     = contains(["marketplace-license", "bring-your-own-license"], var.license_model)
-    error_message = "Invalid value for license_model, valid values are: marketplace-license, bring-your-own-license"
-  }  
-}
-
-variable "tcp_port" {
-  description = "Specifies the TCP IP port on database will listen"
+variable "database_port" {
+  description = "The port number on which the database accepts connections."
   type        = number
+  default     = 50000
 }
 
-variable "ssl_port" {
-  description = "Specifies the TLS SSL port on database will listen"
+variable "backup_retention_period" {
+  description = "The number of days for which automated backups are retained."
   type        = number
+  default     = 7
 }
 
-variable "ibm_customer_id" {
-  description = "Specifies the customer id, to be used for BYOL"
+variable "preferred_backup_window" {
+  description = "The daily time range during which automated backups are created."
   type        = string
+  default     = "07:00-09:00"
 }
 
-variable "ibm_site_id" {
-  description = "Specifies the site id, to be used for BYOL"
+variable "preferred_maintenance_window" {
+  description = "The weekly time range during which system maintenance can occur."
   type        = string
+  default     = "sun:04:00-sun:07:00"
 }
 
 variable "tags" {
-  description = "A map of tags to add to all resources"
+  description = "Tags to apply to the DB instance."
   type        = map(string)
-}
-
-# Condition to check if enhanced monitoring is enabled
-variable "enhanced_monitoring_enabled" {
-  type    = bool
-  default = false
-}
-
-variable "s3_bucket_name" {
-  description = "Specifies the bucket name for backup or data files"
-  type        = string
-}
-
-variable "alert_email_address" {
-  description = "Specifies the email id to which alerts will be sent"
-  type        = string
-}
-
-variable "maintenance_window" {
-  description = "Specifies the weekly maintenance window in UTC"
-  type        = string
-}
-
-variable "backup_window" {
-  description = "Specifies the daily backup windows in UTC"
-  type        = string
-}
-
-variable "backup_retention" {
-  description = "Specifies the days to retain backups between 7 and 31"
-  type        = number
-}
-
-variable "delete_automated_backups" {
-  description = "Retain automated backups on deletion"
-  type        = bool
-}
-
-variable "deletion_protection" {
-  description = "Enable deletion protection"
-  type        = bool
-}
-
-variable "skip_final_snapshot" {
-  description = "Skip final snapshot on deletion"
-  type        = bool
+  default     = {
+    Name = "rds-dev"
+    Backup = "TestDaily?"
+  }
 }

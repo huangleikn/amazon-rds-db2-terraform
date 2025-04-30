@@ -1,0 +1,15 @@
+aws_region = "us-central-1"
+db_instance_identifier = "rds-dev-tf"
+master_username = "masteruser"
+master_password = "your_secure_password"
+db_instance_class = "db.m6g.large"
+allocated_storage = 200
+storage_type = "gp2"
+engine_version = "11.5.9.0-64000591/r1"
+db_subnet_group_name = "your_subnet_group_name"
+vpc_security_group_ids = ["sg-xxxxxxxx"]
+db_parameter_group_name = "your_parameter_group_name"
+database_port = 50000
+backup_retention_period = 7
+# preferred_backup_window = "07:00-09:00"
+# preferred_maintenance_window = "sun:04:00-sun:07:00"
