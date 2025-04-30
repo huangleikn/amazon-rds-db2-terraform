@@ -27,16 +27,16 @@ resource "aws_db_instance" "db2_instance" {
   storage_throughput = 125
   max_allocated_storage = 600
 
-  # Monitoring settings
-  monitoring_interval = 60
-  performance_insights_enabled = true
-  performance_insights_kms_key_arn = "" # If you want to encrypt Performance Insights data, provide a KMS key ARN here.
-  performance_insights_retention_period = 7
+  # # Monitoring settings
+  # monitoring_interval = 60
+  # performance_insights_enabled = false
+  # performance_insights_kms_key_arn = "" # If you want to encrypt Performance Insights data, provide a KMS key ARN here.
+  # performance_insights_retention_period = 7
 
-  # Additional configuration
-  enable_performance_insights = true
-  copy_tags_to_snapshot = true
-  deletion_protection = false
+  # # Additional configuration
+  # enable_performance_insights = false
+  # copy_tags_to_snapshot = true
+  # deletion_protection = false
 
   # Database authentication options
   iam_database_authentication_enabled = false
