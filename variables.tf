@@ -93,3 +93,8 @@ variable "tags" {
     Backup = "TestDaily"
   }
 }
+
+# variable "iops" {
+#   description = "Storage IOPS to be allocated"
+#   type        = number
+# }

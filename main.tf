@@ -15,6 +15,7 @@ resource "aws_db_instance" "db2_instance" {
   username                = var.master_username
   password                = var.master_password
   port                    = var.database_port
+  # iops                    = var.iops 
   license_model           = "bring-your-own-license"
   multi_az                = false
   publicly_accessible     = false
@@ -22,10 +23,11 @@ resource "aws_db_instance" "db2_instance" {
   # preferred_backup_window = var.preferred_backup_window
   # preferred_maintenance_window = var.preferred_maintenance_window
   tags                    = var.tags
+  availability_zone       = "eu-central-1c"
 
   # Enable storage autoscaling
-  storage_throughput = 125
-  max_allocated_storage = 600
+  # storage_throughput = 125
+  max_allocated_storage = 1200
 
   # # Monitoring settings
   # monitoring_interval = 60
