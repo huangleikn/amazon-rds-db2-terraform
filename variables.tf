@@ -90,6 +90,6 @@ variable "tags" {
   type        = map(string)
   default     = {
     Name = "rds-dev"
-    Backup = "TestDaily?"
+    Backup = "TestDaily"
   }
 }
