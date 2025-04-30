@@ -4,7 +4,7 @@ provider "aws" {
 
 resource "aws_db_instance" "db2_instance" {
   identifier              = var.db_instance_identifier
-  engine                  = "ibm-db2"
+  engine                  = "db2-se"
   engine_version          = var.engine_version
   instance_class          = var.db_instance_class
   allocated_storage       = var.allocated_storage
@@ -17,7 +17,7 @@ resource "aws_db_instance" "db2_instance" {
   port                    = var.database_port
   license_model           = "bring-your-own-license"
   multi_az                = false
-  publicly_accessible     = true
+  publicly_accessible     = false
   backup_retention_period = var.backup_retention_period
   # preferred_backup_window = var.preferred_backup_window
   # preferred_maintenance_window = var.preferred_maintenance_window
